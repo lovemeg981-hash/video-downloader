@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pro Video Downloader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="font-family:sans-serif; text-align:center; background:#111; color:white;">
+
+<h2>🔥 Video Downloader</h2>
+
+<form method="POST">
+    <input type="text" name="url" placeholder="Paste video link"
+    style="width:80%; padding:10px; border-radius:10px;">
+    <br><br>
+    <button style="padding:10px 20px; border-radius:10px;">Fetch</button>
+</form>
+
+{% if video %}
+    <h3>{{ video.title }}</h3>
+    <img src="{{ video.thumbnail }}" width="250"><br><br>
+
+    {% for f in formats %}
+        <a href="/download?url={{ video.webpage_url }}&format_id={{ f.format_id }}">
+            <button style="margin:5px; padding:10px; border-radius:10px;">
+                Download {{ f.quality }}
+            </button>
+        </a>
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
